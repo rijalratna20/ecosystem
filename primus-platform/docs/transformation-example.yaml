@@ -1,0 +1,29 @@
+pipeline:
+  - name: default_mask_and_transform
+    description: "Default production->dev transformation"
+    stages:
+      - type: mask
+        fields:
+          - path: customer.ssn
+            mask: pseudonymize
+            options:
+              salt: "env:SALT"
+              deterministic: true
+          - path: customer.email
+            mask: domain_replace
+            options:
+              domain: "example.test"
+      - type: date_shift
+        fields:
+          - path: order.date
+        options:
+          min_days: -30
+          max_days: 30
+      - type: remove
+        fields:
+          - path: attachments.largeBinary
+      - type: validate
+        schema: "contracts/UserProfile.schema.json"
+      - type: compress
+        format: gzip
+

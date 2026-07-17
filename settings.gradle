@@ -1,0 +1,30 @@
+// Gradle settings for the root project
+rootProject.name = 'ai-sytem-design'
+
+// Compact multi-project layout for primus-platform (recommended initial setup)
+// Keep the Gradle graph small; implement cross-cutting capabilities as packages in primus-server
+include ':primus-platform'
+
+// Core platform modules (compact)
+include ':primus-platform:primus-common'
+include ':primus-platform:primus-contract'
+include ':primus-platform:primus-annotations'
+include ':primus-platform:primus-sdk'
+include ':primus-platform:primus-auth-client'
+include ':primus-platform:primus-metadata'
+include ':primus-platform:primus-plugin'
+
+// Runtime / orchestration
+include ':primus-platform:primus-server'    // contains audit, approval, notification, monitoring, scheduler, transforms packages
+include ':primus-platform:primus-nas'       // storage adapter (filesystem/NAS)
+include ':primus-platform:primus-search'    // search/indexing shim (ES/OpenSearch)
+
+// UI & experimental
+include ':primus-platform:primus-ui'
+include ':primus-platform:shadow-server'
+include ':primus-platform:shadow-ui'
+
+// Note: many previously proposed fine-grained modules (audit, approval, notification, monitoring, scheduler,
+// config, storage adapters) are intentionally started as packages inside `primus-server`. Extract them into
+// standalone Gradle modules later only when independent lifecycle or reuse is required.
+

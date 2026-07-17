@@ -1,0 +1,28 @@
+plugins {
+    id 'groovy'
+    id 'application'
+}
+
+group = 'com.example'
+version = '0.1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Use the published Groovy artifact (matches the jars in lib/)
+    implementation 'org.codehaus.groovy:groovy:5.0.6'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+}
+
+application {
+    // Fully-qualified main class
+    mainClass = 'com.example.Main'
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+}
+
