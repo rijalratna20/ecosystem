@@ -24,7 +24,18 @@ include ':primus-platform:primus-ui'
 include ':primus-platform:shadow-server'
 include ':primus-platform:shadow-ui'
 
-// Note: many previously proposed fine-grained modules (audit, approval, notification, monitoring, scheduler,
-// config, storage adapters) are intentionally started as packages inside `primus-server`. Extract them into
-// standalone Gradle modules later only when independent lifecycle or reuse is required.
+// ---- Tier 1: CRITICAL enterprise modules (Phase 1 / v1.0) ----
+// Implemented as standalone Gradle modules per the planning document (MISSING_MODULES_ANALYSIS.md)
+include ':primus-platform:primus-audit'          // immutable audit trail (SOX, HIPAA, GDPR)
+include ':primus-platform:primus-approval'       // multi-level approval workflow for sensitive data
+include ':primus-platform:primus-storage-s3'     // cloud object-storage backend (AWS S3 / Azure / GCS)
+include ':primus-platform:primus-api-gateway'    // API gateway: routing, rate-limiting, auth
+include ':primus-platform:primus-notification'   // email, Slack, SMS notifications
+
+// ---- Tier 2: HIGH PRIORITY enterprise modules (Phase 2 / v1.1) ----
+include ':primus-platform:primus-monitoring'     // health checks, performance metrics, SLA alerting
+include ':primus-platform:primus-scheduler'      // recurring exports, maintenance jobs, data cleanup
+include ':primus-platform:primus-config'         // centralized configuration management & feature flags
+include ':primus-platform:primus-cli'            // command-line interface for DevOps and admins
+include ':primus-platform:primus-data-lineage'   // data-flow tracking: source → export → retrieval → archive
 
