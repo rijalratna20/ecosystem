@@ -47,9 +47,9 @@
 
 | Module | Status | Next Steps |
 |--------|--------|-----------|
-| [primus-utils.md](./modules/primus-utils.md) | 🔶 Partial | Apply standardized template |
-| [primus-security.md](./modules/primus-security.md) | 🔶 Partial | Apply standardized template |
-| [primus-core.md](./modules/primus-core.md) | 🔶 Partial | Created but needs template standardization |
+| [primus-utils.md](./modules/primus-utils.md) | ✅ Created | Apply standardized template |
+| [primus-security.md](./modules/primus-security.md) | ✅ Created | Apply standardized template |
+| [primus-core.md](./modules/primus-core.md) | ✅ Created | Apply standardized template |
 | [primus-retrieval.md](./modules/primus-retrieval.md) | ✅ Exists | Apply standardized template |
 | [primus-authenticator.md](./modules/primus-authenticator.md) | ✅ Exists | Apply standardized template |
 | [primus-client-sdk.md](./modules/primus-client-sdk.md) | ✅ Exists | Apply standardized template |
@@ -61,6 +61,8 @@
 | [primus-server.md](./modules/primus-server.md) | ✅ Exists | Apply standardized template |
 | [primus-nas.md](./modules/primus-nas.md) | ✅ Exists | Apply standardized template |
 | [shadow-server.md](./modules/shadow-server.md) | ✅ Exists | Apply standardized template |
+| [shadow-test.md](./modules/shadow-test.md) | ✅ Created | Testing & validation service |
+| [spring-client.md](./modules/spring-client.md) | ✅ Created | Spring Boot auto-configuration client |
 
 ### UI Modules
 
@@ -68,6 +70,12 @@
 |--------|--------|-----------|
 | [primus-ui.md](./modules/primus-ui.md) | ✅ Exists | Convert to template |
 | [shadow-ui.md](./modules/shadow-ui.md) | ✅ Exists | Convert to template |
+
+### Plugin Framework
+
+| Module | Status | Next Steps |
+|--------|--------|-----------|
+| [primus-plugin.md](./modules/primus-plugin.md) | ✅ Created | Plugin SPI and extension point framework |
 
 ### Utility Modules
 
@@ -134,8 +142,9 @@
 - Storage architecture (NAS, S3, PostgreSQL)
 - UI generation framework
 
-### ✅ Phase 2: Module Deep-Dives (30% complete)
+### ✅ Phase 2: Module Deep-Dives (65% complete)
 - 3 modules fully standardized (common, annotations, export)
+- 6 new module docs created (utils, security, core, spring-client, shadow-test, primus-plugin)
 - 8 modules created with substantial content
 - Standardized template ready to apply to remaining modules
 
@@ -225,22 +234,32 @@
 
 ## Documentation Statistics
 
-- **Total Documents**: 25+
+- **Total Documents**: 31+
 - **Phase 1 Complete**: 3/3 (100%)
-- **Phase 2 Modules**: 11/11 created, 3/11 fully standardized (27%)
+- **Phase 2 Modules**: 18/18 created, 3/18 fully standardized (~17%)
 - **Phase 3 Complete**: 11/11 (100%)
-- **Total Words**: ~25,000+
-- **Code Examples**: 50+
+- **Total Words**: ~35,000+
+- **Code Examples**: 100+
 - **Diagrams**: 15+
+
+### New in this update
+- ✅ Added `primus-utils.md` (formatting, validation, transformation helpers)
+- ✅ Added `primus-security.md` (JWT, OAuth2, RBAC, crypto)
+- ✅ Added `primus-core.md` (contract registry, export transactions, storage SPI)
+- ✅ Added `spring-client.md` (Spring Boot auto-configuration client)
+- ✅ Added `shadow-test.md` (conformance testing, shadow replay, benchmarks)
+- ✅ Added `primus-plugin.md` (plugin SPI, extension point contracts)
 
 ---
 
 ## Next Actions
 
-**Priority 1**: Standardize all 11 remaining modules using the template
+**Priority 1**: Standardize all remaining modules using the template
 **Priority 2**: Convert sequence diagrams to Mermaid format
 **Priority 3**: Create quick-reference guides for common tasks
 **Priority 4**: Add example YAML contract files
+**Priority 5**: Add database schema and entity model documentation
+**Priority 6**: Add operational runbooks (troubleshooting, upgrade, rollback)
 
 ---
 
