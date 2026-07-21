@@ -11,7 +11,7 @@ import java.util.List;
  *
  *   primus app register --file app.yaml
  *   primus export run --app LoanService --date 2024-01-01
- *   primus exports list --status COMPLETED
+ *   primus export list --status COMPLETED
  *   primus approval approve --id req_123 --reason "UAT"
  *   primus audit show --app CreditService --from 2024-01-01 --to 2024-01-31
  * </pre>

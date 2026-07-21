@@ -4,7 +4,9 @@ plugins {
     id 'application'
 }
 
-mainClassName = 'com.primus.cli.runner.PrimusCli'
+application {
+    mainClass = 'com.primus.cli.runner.PrimusCli'
+}
 
 dependencies {
     api project(':primus-platform:primus-plugin')

@@ -8,7 +8,7 @@ import java.util.List;
  * <p>Sub-commands:
  * <pre>
  *   primus export run --app LoanService --date 2024-01-01
- *   primus exports list --status COMPLETED --format json
+ *   primus export list --status COMPLETED --format json
  * </pre>
  */
 public class ExportCommand implements Command {
