@@ -37,7 +37,7 @@ public class TokenValidator {
      */
     public TokenClaims validate(String rawToken) {
         if (rawToken == null || rawToken.isBlank()) {
-            throw new AuthException("****** is required");
+            throw new AuthException("Authentication token is required");
         }
 
         String token = rawToken.startsWith("Bearer ") ? rawToken.substring(7) : rawToken;

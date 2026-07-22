@@ -4,7 +4,9 @@ import com.primus.metadata.model.ApplicationMetadata;
 import com.primus.metadata.model.FieldMetadata;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.SafeConstructor;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -31,22 +33,28 @@ import java.util.Map;
  *     maskStrategy: LAST_N
  *     visibleChars: 4
  * </pre>
+ *
+ * <p><b>Security:</b> Uses {@link SafeConstructor} to prevent unsafe deserialization
+ * of arbitrary Java types from untrusted YAML input.
  */
 public class YamlMetadataParser {
 
     private static final Logger log = LoggerFactory.getLogger(YamlMetadataParser.class);
 
+    /** Create a safe Yaml instance that only loads primitive/collection types. */
+    private static Yaml safeYaml() {
+        return new Yaml(new SafeConstructor(new LoaderOptions()));
+    }
+
     public ApplicationMetadata parse(InputStream input) {
-        Yaml yaml = new Yaml();
         @SuppressWarnings("unchecked")
-        Map<String, Object> doc = yaml.load(input);
+        Map<String, Object> doc = (Map<String, Object>) safeYaml().load(input);
         return fromMap(doc);
     }
 
     public ApplicationMetadata parse(String yamlContent) {
-        Yaml yaml = new Yaml();
         @SuppressWarnings("unchecked")
-        Map<String, Object> doc = yaml.load(yamlContent);
+        Map<String, Object> doc = (Map<String, Object>) safeYaml().load(yamlContent);
         return fromMap(doc);
     }
 

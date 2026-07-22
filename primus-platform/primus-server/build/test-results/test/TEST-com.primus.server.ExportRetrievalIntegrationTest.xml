@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.primus.server.ExportRetrievalIntegrationTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-07-22T01:40:10.449Z" hostname="runnervm3jd5f" time="3.761">
+<testsuite name="com.primus.server.ExportRetrievalIntegrationTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-07-22T01:43:38.516Z" hostname="runnervm3jd5f" time="3.209">
   <properties/>
-  <testcase name="getExportStatus_unknownId_returns404()" classname="com.primus.server.ExportRetrievalIntegrationTest" time="0.712"/>
-  <testcase name="registerApplication_success()" classname="com.primus.server.ExportRetrievalIntegrationTest" time="0.068"/>
-  <testcase name="initiateExport_missingAppId_returns400()" classname="com.primus.server.ExportRetrievalIntegrationTest" time="0.015"/>
+  <testcase name="getExportStatus_unknownId_returns404()" classname="com.primus.server.ExportRetrievalIntegrationTest" time="0.75"/>
+  <testcase name="registerApplication_success()" classname="com.primus.server.ExportRetrievalIntegrationTest" time="0.077"/>
+  <testcase name="initiateExport_missingAppId_returns400()" classname="com.primus.server.ExportRetrievalIntegrationTest" time="0.017"/>
   <testcase name="initiateExport_success()" classname="com.primus.server.ExportRetrievalIntegrationTest" time="0.017"/>
-  <system-out><![CDATA[01:40:10.601 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.primus.server.ExportRetrievalIntegrationTest]: ExportRetrievalIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-01:40:10.701 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.primus.server.PrimusServerApplication for test class com.primus.server.ExportRetrievalIntegrationTest
+  <system-out><![CDATA[01:43:38.643 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.primus.server.ExportRetrievalIntegrationTest]: ExportRetrievalIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+01:43:38.747 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.primus.server.PrimusServerApplication for test class com.primus.server.ExportRetrievalIntegrationTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -17,16 +17,16 @@
 
  :: Spring Boot ::                (v3.4.1)
 
-2026-07-22T01:40:11.140Z  INFO 5654 --- [primus-server] [    Test worker] c.p.s.ExportRetrievalIntegrationTest     : Starting ExportRetrievalIntegrationTest using Java 17.0.19 with PID 5654 (started by runner in /home/runner/work/ecosystem/ecosystem/primus-platform/primus-server)
-2026-07-22T01:40:11.143Z  INFO 5654 --- [primus-server] [    Test worker] c.p.s.ExportRetrievalIntegrationTest     : No active profile set, falling back to 1 default profile: "default"
-2026-07-22T01:40:12.930Z  INFO 5654 --- [primus-server] [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2026-07-22T01:40:12.931Z  INFO 5654 --- [primus-server] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-07-22T01:40:12.940Z  INFO 5654 --- [primus-server] [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoints beneath base path '/actuator'
-2026-07-22T01:40:12.951Z  INFO 5654 --- [primus-server] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 19 ms
-2026-07-22T01:40:13.047Z  INFO 5654 --- [primus-server] [    Test worker] c.p.s.ExportRetrievalIntegrationTest     : Started ExportRetrievalIntegrationTest in 2.241 seconds (process running for 3.192)
-2026-07-22T01:40:14.199Z  INFO 5654 --- [primus-server] [    Test worker] com.primus.server.audit.AuditService     : AUDIT action=EXPORT_REQUESTED actor=user1 appId=test-app targetId=f533028e-0619-4cc9-9354-093b7d6d4f50 correlationId=null
-2026-07-22T01:40:14.203Z  INFO 5654 --- [primus-server] [    Test worker] com.primus.server.audit.AuditService     : AUDIT action=EXPORT_COMPLETED actor=user1 appId=test-app targetId=f533028e-0619-4cc9-9354-093b7d6d4f50 correlationId=null
-2026-07-22T01:40:14.203Z  INFO 5654 --- [primus-server] [    Test worker] com.primus.server.export.ExportService   : Export completed exportId=f533028e-0619-4cc9-9354-093b7d6d4f50 appId=test-app bytes=58
+2026-07-22T01:43:39.188Z  INFO 7043 --- [primus-server] [    Test worker] c.p.s.ExportRetrievalIntegrationTest     : Starting ExportRetrievalIntegrationTest using Java 17.0.19 with PID 7043 (started by runner in /home/runner/work/ecosystem/ecosystem/primus-platform/primus-server)
+2026-07-22T01:43:39.189Z  INFO 7043 --- [primus-server] [    Test worker] c.p.s.ExportRetrievalIntegrationTest     : No active profile set, falling back to 1 default profile: "default"
+2026-07-22T01:43:40.733Z  INFO 7043 --- [primus-server] [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-07-22T01:43:40.733Z  INFO 7043 --- [primus-server] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-07-22T01:43:40.740Z  INFO 7043 --- [primus-server] [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoints beneath base path '/actuator'
+2026-07-22T01:43:40.749Z  INFO 7043 --- [primus-server] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 15 ms
+2026-07-22T01:43:40.813Z  INFO 7043 --- [primus-server] [    Test worker] c.p.s.ExportRetrievalIntegrationTest     : Started ExportRetrievalIntegrationTest in 1.961 seconds (process running for 2.937)
+2026-07-22T01:43:41.714Z  INFO 7043 --- [primus-server] [    Test worker] com.primus.server.audit.AuditService     : AUDIT action=EXPORT_REQUESTED actor=user1 appId=test-app targetId=110370a5-9894-4bf8-b8bb-8aadc8ebc803 correlationId=null
+2026-07-22T01:43:41.717Z  INFO 7043 --- [primus-server] [    Test worker] com.primus.server.audit.AuditService     : AUDIT action=EXPORT_COMPLETED actor=user1 appId=test-app targetId=110370a5-9894-4bf8-b8bb-8aadc8ebc803 correlationId=null
+2026-07-22T01:43:41.718Z  INFO 7043 --- [primus-server] [    Test worker] com.primus.server.export.ExportService   : Export completed exportId=110370a5-9894-4bf8-b8bb-8aadc8ebc803 appId=test-app bytes=58
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
