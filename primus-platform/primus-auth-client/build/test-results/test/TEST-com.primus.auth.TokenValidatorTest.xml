@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.primus.auth.TokenValidatorTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-07-22T01:38:40.309Z" hostname="runnervm3jd5f" time="0.052">
+  <properties/>
+  <testcase name="requireRole_fails()" classname="com.primus.auth.TokenValidatorTest" time="0.023"/>
+  <testcase name="bearerPrefix_stripped()" classname="com.primus.auth.TokenValidatorTest" time="0.002"/>
+  <testcase name="validToken_returnsAdminClaims()" classname="com.primus.auth.TokenValidatorTest" time="0.001"/>
+  <testcase name="missingToken_throwsAuthException()" classname="com.primus.auth.TokenValidatorTest" time="0.002"/>
+  <testcase name="requireRole_passes()" classname="com.primus.auth.TokenValidatorTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+]]></system-err>
+</testsuite>

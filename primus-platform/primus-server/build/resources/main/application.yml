@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: primus-server
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when-authorized
+
+primus:
+  storage:
+    nas:
+      root-path: ${PRIMUS_NAS_ROOT:/tmp/primus/storage}
+  auth:
+    issuer: primus
+    clock-skew-seconds: 30
+  export:
+    max-retry-attempts: 3
+
+logging:
+  level:
+    com.primus: INFO
