@@ -27,3 +27,15 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/.agents/
+/.cursor/
+/.github/
+/.gradle/
+/.idea/
+/.jetro/
+/.venv/
+/data/
+/gradle/
+/.windsurfrules
+/gradlew
+/gradlew.bat
