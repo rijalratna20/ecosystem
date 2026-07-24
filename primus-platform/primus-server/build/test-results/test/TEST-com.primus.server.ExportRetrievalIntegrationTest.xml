@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.primus.server.ExportRetrievalIntegrationTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-07-22T01:43:38.516Z" hostname="runnervm3jd5f" time="3.209">
+<testsuite name="com.primus.server.ExportRetrievalIntegrationTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-07-24T02:00:54.227Z" hostname="macbookair.lan" time="1.676">
   <properties/>
-  <testcase name="getExportStatus_unknownId_returns404()" classname="com.primus.server.ExportRetrievalIntegrationTest" time="0.75"/>
-  <testcase name="registerApplication_success()" classname="com.primus.server.ExportRetrievalIntegrationTest" time="0.077"/>
-  <testcase name="initiateExport_missingAppId_returns400()" classname="com.primus.server.ExportRetrievalIntegrationTest" time="0.017"/>
-  <testcase name="initiateExport_success()" classname="com.primus.server.ExportRetrievalIntegrationTest" time="0.017"/>
-  <system-out><![CDATA[01:43:38.643 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.primus.server.ExportRetrievalIntegrationTest]: ExportRetrievalIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-01:43:38.747 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.primus.server.PrimusServerApplication for test class com.primus.server.ExportRetrievalIntegrationTest
+  <testcase name="getExportStatus_unknownId_returns404()" classname="com.primus.server.ExportRetrievalIntegrationTest" time="0.419"/>
+  <testcase name="registerApplication_success()" classname="com.primus.server.ExportRetrievalIntegrationTest" time="0.034"/>
+  <testcase name="initiateExport_missingAppId_returns400()" classname="com.primus.server.ExportRetrievalIntegrationTest" time="0.007"/>
+  <testcase name="initiateExport_success()" classname="com.primus.server.ExportRetrievalIntegrationTest" time="0.009"/>
+  <system-out><![CDATA[22:00:54.282 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.primus.server.ExportRetrievalIntegrationTest]: ExportRetrievalIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+22:00:54.333 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.primus.server.PrimusServerApplication for test class com.primus.server.ExportRetrievalIntegrationTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -17,16 +17,21 @@
 
  :: Spring Boot ::                (v3.4.1)
 
-2026-07-22T01:43:39.188Z  INFO 7043 --- [primus-server] [    Test worker] c.p.s.ExportRetrievalIntegrationTest     : Starting ExportRetrievalIntegrationTest using Java 17.0.19 with PID 7043 (started by runner in /home/runner/work/ecosystem/ecosystem/primus-platform/primus-server)
-2026-07-22T01:43:39.189Z  INFO 7043 --- [primus-server] [    Test worker] c.p.s.ExportRetrievalIntegrationTest     : No active profile set, falling back to 1 default profile: "default"
-2026-07-22T01:43:40.733Z  INFO 7043 --- [primus-server] [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2026-07-22T01:43:40.733Z  INFO 7043 --- [primus-server] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-07-22T01:43:40.740Z  INFO 7043 --- [primus-server] [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoints beneath base path '/actuator'
-2026-07-22T01:43:40.749Z  INFO 7043 --- [primus-server] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 15 ms
-2026-07-22T01:43:40.813Z  INFO 7043 --- [primus-server] [    Test worker] c.p.s.ExportRetrievalIntegrationTest     : Started ExportRetrievalIntegrationTest in 1.961 seconds (process running for 2.937)
-2026-07-22T01:43:41.714Z  INFO 7043 --- [primus-server] [    Test worker] com.primus.server.audit.AuditService     : AUDIT action=EXPORT_REQUESTED actor=user1 appId=test-app targetId=110370a5-9894-4bf8-b8bb-8aadc8ebc803 correlationId=null
-2026-07-22T01:43:41.717Z  INFO 7043 --- [primus-server] [    Test worker] com.primus.server.audit.AuditService     : AUDIT action=EXPORT_COMPLETED actor=user1 appId=test-app targetId=110370a5-9894-4bf8-b8bb-8aadc8ebc803 correlationId=null
-2026-07-22T01:43:41.718Z  INFO 7043 --- [primus-server] [    Test worker] com.primus.server.export.ExportService   : Export completed exportId=110370a5-9894-4bf8-b8bb-8aadc8ebc803 appId=test-app bytes=58
+2026-07-23T22:00:54.526-04:00  INFO 15629 --- [primus-server] [    Test worker] c.p.s.ExportRetrievalIntegrationTest     : Starting ExportRetrievalIntegrationTest using Java 26.0.1 with PID 15629 (started by ratnarijal in /Users/ratnarijal/Desktop/Project/ai-sytem-design/primus-platform/primus-server)
+2026-07-23T22:00:54.527-04:00  INFO 15629 --- [primus-server] [    Test worker] c.p.s.ExportRetrievalIntegrationTest     : No active profile set, falling back to 1 default profile: "default"
+2026-07-23T22:00:55.336-04:00  INFO 15629 --- [primus-server] [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-07-23T22:00:55.336-04:00  INFO 15629 --- [primus-server] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-07-23T22:00:55.342-04:00  INFO 15629 --- [primus-server] [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoints beneath base path '/actuator'
+2026-07-23T22:00:55.347-04:00  INFO 15629 --- [primus-server] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 11 ms
+2026-07-23T22:00:55.382-04:00  INFO 15629 --- [primus-server] [    Test worker] c.p.s.ExportRetrievalIntegrationTest     : Started ExportRetrievalIntegrationTest in 0.996 seconds (process running for 1.468)
+2026-07-23T22:00:55.896-04:00  INFO 15629 --- [primus-server] [    Test worker] com.primus.server.audit.AuditService     : AUDIT action=EXPORT_REQUESTED actor=user1 appId=test-app targetId=9554d94f-ffd5-4177-b973-ec28675ac57d correlationId=null
+2026-07-23T22:00:55.899-04:00  INFO 15629 --- [primus-server] [    Test worker] com.primus.server.audit.AuditService     : AUDIT action=EXPORT_COMPLETED actor=user1 appId=test-app targetId=9554d94f-ffd5-4177-b973-ec28675ac57d correlationId=null
+2026-07-23T22:00:55.900-04:00  INFO 15629 --- [primus-server] [    Test worker] com.primus.server.export.ExportService   : Export completed exportId=9554d94f-ffd5-4177-b973-ec28675ac57d appId=test-app bytes=58
 ]]></system-out>
-  <system-err><![CDATA[]]></system-err>
+  <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build what is described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/Users/ratnarijal/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.15.11/a38b16385e867f59a641330f0362ebe742788ed8/byte-buddy-agent-1.15.11.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
 </testsuite>
