@@ -1,7 +1,5 @@
 // Root build for primus-platform - configure common settings for subprojects
 subprojects {
-    apply plugin: 'java'
-
     group = 'com.primus'
     version = '0.1.0'
 
@@ -9,8 +7,17 @@ subprojects {
         mavenCentral()
     }
 
-    // Default source compatibility if needed
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    plugins.withId('java') {
+        java {
+            sourceCompatibility = JavaVersion.VERSION_17
+            targetCompatibility = JavaVersion.VERSION_17
+        }
+    }
+    plugins.withId('java-library') {
+        java {
+            sourceCompatibility = JavaVersion.VERSION_17
+            targetCompatibility = JavaVersion.VERSION_17
+        }
+    }
 }
 

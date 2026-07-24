@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.primus.common.CommonTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-07-22T01:38:33.041Z" hostname="runnervm3jd5f" time="0.057">
+  <properties/>
+  <testcase name="stringUtils_mask()" classname="com.primus.common.CommonTest" time="0.028"/>
+  <testcase name="notFoundException_hasDetails()" classname="com.primus.common.CommonTest" time="0.007"/>
+  <testcase name="apiResponse_ok()" classname="com.primus.common.CommonTest" time="0.002"/>
+  <testcase name="apiResponse_error()" classname="com.primus.common.CommonTest" time="0.001"/>
+  <testcase name="validationException()" classname="com.primus.common.CommonTest" time="0.001"/>
+  <testcase name="stringUtils_toCamelCase()" classname="com.primus.common.CommonTest" time="0.001"/>
+  <testcase name="page_hasNext()" classname="com.primus.common.CommonTest" time="0.002"/>
+  <testcase name="stringUtils_toSnakeCase()" classname="com.primus.common.CommonTest" time="0.001"/>
+  <testcase name="page_empty()" classname="com.primus.common.CommonTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

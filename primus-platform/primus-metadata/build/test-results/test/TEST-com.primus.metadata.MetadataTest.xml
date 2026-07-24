@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.primus.metadata.MetadataTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-07-22T01:43:37.691Z" hostname="runnervm3jd5f" time="0.068">
+  <properties/>
+  <testcase name="registry_getUnknownThrows()" classname="com.primus.metadata.MetadataTest" time="0.014"/>
+  <testcase name="annotationParser_parsesFields()" classname="com.primus.metadata.MetadataTest" time="0.012"/>
+  <testcase name="yamlParser_parsesBasicMetadata()" classname="com.primus.metadata.MetadataTest" time="0.028"/>
+  <testcase name="registry_storeAndRetrieve()" classname="com.primus.metadata.MetadataTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+]]></system-err>
+</testsuite>
