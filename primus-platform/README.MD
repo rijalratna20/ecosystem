@@ -1,384 +1,191 @@
-What Problem Does Primus Solve?
-Executive Summary
+# What Problem Does Primus Solve?
+
+## Executive Summary
 
 Primus is a secure, metadata-driven data replication platform that enables production-like data to be safely exported, stored, and retrieved for lower environments (DEV, QA, UAT, Performance, Training) without requiring custom code for each application.
 
 Instead of every application building its own scripts, SQL exports, masking logic, storage conventions, and UI, Primus provides a standardized platform where applications describe what data they own, and Primus handles how it is exported, secured, stored, searched, and retrieved.
 
-Problems Today
+## Problems Today
 
-Imagine a company has 100 microservices.
+Imagine a company with 100 microservices:
 
-Customer Service
+- Customer Service
+- Loan Service
+- Payment Service
+- Fraud Service
+- Mortgage Service
+- Collections Service
+- Document Service
+- ...and many more
 
-Loan Service
+Every team eventually needs production data in lower environments, but each team solves it differently.
 
-Payment Service
+Typical approaches include:
 
-Fraud Service
-
-Mortgage Service
-
-Collections Service
-
-Document Service
-
-...
-
-Every team eventually needs production data in lower environments.
-
-Unfortunately, every team solves it differently.
-
-Typical approaches:
-
-Manual MongoDB export
-SQL scripts
-Custom REST endpoints
-Shell scripts
-Shared folders
-SFTP
-Email requests
-Database backups
-Direct production access
+- Manual MongoDB export
+- SQL scripts
+- Custom REST endpoints
+- Shell scripts
+- Shared folders
+- SFTP
+- Email requests
+- Database backups
+- Direct production access
 
 Every solution becomes unique.
 
-Problems Organizations Face
-1. Production data cannot safely be copied
-
-Production contains:
-
-SSN
-Credit card numbers
-Driver licenses
-Names
-Addresses
-DOB
-Income
-Banking information
-
-Simply copying a database is a security risk.
-
-2. Every application exports data differently
-
-One team writes:
-
-exportCustomer.sh
-
-Another team writes
-
-mongoexport
-
-Another builds
-
-GET /customer/export
-
-Nothing is standardized.
-
-3. No common metadata
-
-Nobody knows
-
-what collections exist
-relationships
-root entity
-child collections
-document format
-
-Knowledge lives inside developers' heads.
-
-4. Difficult to reconstruct a transaction
-
-Example
-
-Customer
-
-↓
-
-Accounts
-
-↓
-
-Applications
-
-↓
-
-Documents
-
-↓
-
-Audit
-
-↓
-
-Credit Bureau
-
-↓
-
-Notifications
-
-Which collections belong together?
-
-Every application answers differently.
-
-5. Sensitive fields are inconsistent
-
-One application masks
-
-SSN
-
-Another forgets.
-
-One masks
-
-DOB
-
-Another exposes it.
-
-No centralized rules.
-
-6. Lower environments become stale
-
-Developers need:
-
-Production Customer
-
-↓
-
-QA
-
-↓
-
-Bug Reproduction
-
-But data arrives days later.
-
-7. UI is hardcoded
-
-Every application builds
-
-Search Page
-
-↓
-
-Result Grid
-
-↓
-
-Detail Page
-
-↓
-
-Tabs
-
-↓
-
-Filters
-
-Again and again.
-
-What Primus Introduces
-
-Instead of code...
-
-Developers provide metadata.
-
-metadata.yaml
-
-query.yaml
-
-sensitiveField.yaml
-
-That's it.
-
-Everything else becomes automatic.
-
-Primus Responsibilities
-1. Application Registration
-
-Client application says
-
-I am Loan Service.
-
-These are my collections.
-
-These are my relationships.
-
-These are my search fields.
-
-Primus validates and registers the application.
-
-2. Secure Export
-
-Developer writes
-
-@PrimusExport
-
-Primus automatically
-
-collects related collections
-masks sensitive data
-converts to JSON/XML
-uploads securely
-retries failures
-records audit logs
-
-No export logic is written by the application.
-
-3. Secure Storage
-
-Primus stores
-
-LoanApp
-
-2026200
-
-customer
-
-12345.json
-
-account
-
-12345.json
-
-bureau
-
-12345.xml
-
-using a standardized folder structure.
-
-4. Metadata Driven Search
-
-Instead of writing
-
-SELECT ...
-
-WHERE ...
-
-the application supplies
-
-query.yaml
-
-Primus generates the search UI and retrieval APIs.
-
-5. Dynamic UI
-
-Instead of Angular developers building pages,
-
-Primus generates
-
-Search
-
-Result Grid
-
-Filters
-
-Tabs
-
-Collection Viewer
-
-directly from metadata.
-
-Adding a new application requires no new Angular code.
-
-6. Standard Retrieval
-
-Developers write
-
-@PrimusRetrieval
-
-Primus retrieves
-
-Customer
-
-Account
-
-Credit
-
-Audit
-
-XML
-
-Images
-
-and assembles the complete transaction.
-
-7. Governance
-
-Primus knows
-
-every registered application
-metadata versions
-exported transactions
-upload history
-permissions
-audit logs
-
-This enables enterprise governance instead of ad hoc scripts.
-
-Benefits for Developers
-
-Without Primus:
-
-Write export logic
-
-Write REST API
-
-Write storage
-
-Write retry
-
-Write JWT
-
-Write search page
-
-Write result page
-
-Write detail page
-
-Write masking
-
-Write retrieval
-
-With Primus:
-
-metadata.yaml
-
-query.yaml
-
-sensitiveField.yaml
-
-@PrimusExport
-
-@PrimusRetrieval
+## Problems Organizations Face
+
+1. **Production data cannot safely be copied**
+   - Production contains sensitive data such as SSN, credit card numbers, driver licenses, names, addresses, DOB, income, and banking information.
+   - Simply copying a database is a security risk.
+
+2. **Every application exports data differently**
+   - One team writes `exportCustomer.sh`.
+   - Another team uses `mongoexport`.
+   - Another builds `GET /customer/export`.
+   - Nothing is standardized.
+
+3. **No common metadata**
+   - Teams lack a shared definition of:
+	 - Existing collections
+	 - Relationships
+	 - Root entities
+	 - Child collections
+	 - Document formats
+   - Knowledge lives in developers' heads.
+
+4. **Difficult to reconstruct a transaction**
+   - Example flow:
+	 - Customer -> Accounts -> Applications -> Documents -> Audit -> Credit Bureau -> Notifications
+   - Which collections belong together is often unclear.
+
+5. **Sensitive fields are handled inconsistently**
+   - One application masks SSN; another forgets.
+   - One masks DOB; another exposes it.
+   - No centralized rules exist.
+
+6. **Lower environments become stale**
+   - Teams need fast flow from production customer data to QA bug reproduction.
+   - Data often arrives days later.
+
+7. **UI is hardcoded repeatedly**
+   - Each application rebuilds:
+	 - Search page
+	 - Result grid
+	 - Detail page
+	 - Tabs
+	 - Filters
+
+## What Primus Introduces
+
+Instead of writing custom code, developers provide metadata:
+
+- `metadata.yaml`
+- `query.yaml`
+- `sensitiveField.yaml`
+
+That is all. Everything else becomes automatic.
+
+## Primus Responsibilities
+
+1. **Application registration**
+   - Client applications declare:
+	 - Identity (for example, "I am Loan Service")
+	 - Collections
+	 - Relationships
+	 - Search fields
+   - Primus validates and registers the application.
+
+2. **Secure export**
+   - Developers annotate with `@PrimusExport`.
+   - Primus automatically:
+	 - Collects related collections
+	 - Masks sensitive data
+	 - Converts to JSON/XML
+	 - Uploads securely
+	 - Retries failures
+	 - Records audit logs
+   - No export logic is written by the application.
+
+3. **Secure storage**
+   - Primus stores data with a standardized folder structure, for example:
+	 - `LoanApp/2026200/customer/12345.json`
+	 - `LoanApp/2026200/account/12345.json`
+	 - `LoanApp/2026200/bureau/12345.xml`
+
+4. **Metadata-driven search**
+   - Instead of writing SQL like `SELECT ... WHERE ...`, applications supply `query.yaml`.
+   - Primus generates search UI and retrieval APIs.
+
+5. **Dynamic UI generation**
+   - Primus generates:
+	 - Search
+	 - Result grid
+	 - Filters
+	 - Tabs
+	 - Collection viewer
+   - Adding a new application requires no new Angular code.
+
+6. **Standard retrieval**
+   - Developers annotate with `@PrimusRetrieval`.
+   - Primus retrieves customer, account, credit, audit, XML, and image artifacts, then assembles a complete transaction.
+
+7. **Governance**
+   - Primus tracks:
+	 - Registered applications
+	 - Metadata versions
+	 - Exported transactions
+	 - Upload history
+	 - Permissions
+	 - Audit logs
+   - This enables enterprise governance instead of ad hoc scripts.
+
+## Benefits for Developers
+
+Without Primus, teams must build and maintain export logic, REST APIs, storage, retries, JWT integration, search pages, result pages, detail pages, masking, and retrieval.
+
+With Primus, teams mainly provide:
+
+- `metadata.yaml`
+- `query.yaml`
+- `sensitiveField.yaml`
+- `@PrimusExport`
+- `@PrimusRetrieval`
 
 Done.
 
-Benefits for Operations
-Consistent storage structure
-Centralized governance
-Auditable exports
-Versioned metadata
-Easier backups
-Standard APIs
-Reduced maintenance
-Benefits for Security
-JWT authentication
-Centralized authorization
-Sensitive field masking
-No direct production database access
-Audit trail for every export and retrieval
-Configurable approval workflows
-Benefits for the Enterprise
+## Benefits for Operations
+
+- Consistent storage structure
+- Centralized governance
+- Auditable exports
+- Versioned metadata
+- Easier backups
+- Standard APIs
+- Reduced maintenance
+
+## Benefits for Security
+
+- JWT authentication
+- Centralized authorization
+- Sensitive field masking
+- No direct production database access
+- Audit trail for every export and retrieval
+- Configurable approval workflows
+
+## Benefits for the Enterprise
 
 Primus creates a common platform for all applications:
 
-Standardized integration: Every application exports and retrieves data the same way.
-Faster onboarding: New applications only need metadata and annotations instead of custom tooling.
-Reduced duplication: Teams no longer build and maintain their own export, masking, storage, and retrieval solutions.
-Consistent user experience: Search and detail screens are generated from metadata, giving every application a familiar interface.
-Governance and compliance: Centralized metadata, versioning, auditing, and security policies make the platform easier to operate and review.
-Primus Vision
+- **Standardized integration:** Every application exports and retrieves data the same way.
+- **Faster onboarding:** New applications need metadata and annotations instead of custom tooling.
+- **Reduced duplication:** Teams no longer build and maintain separate export, masking, storage, and retrieval solutions.
+- **Consistent user experience:** Search and detail screens are generated from metadata, giving every application a familiar interface.
+- **Governance and compliance:** Centralized metadata, versioning, auditing, and security policies make the platform easier to operate and review.
+
+## Primus Vision
 
 Primus is a metadata-driven data virtualization platform that standardizes how enterprise applications securely publish, store, search, and retrieve production-like business transactions for lower environments.
 

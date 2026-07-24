@@ -1,0 +1,220 @@
+version: 1
+project: primus-platform
+global_entry:
+  - Tier 1 stability baseline complete
+  - Module boundaries and contracts documented
+global_exit:
+  - Gradle module builds in CI
+  - API/event contracts tested
+  - Unit/integration tests passing
+  - Security/observability/runbook complete
+tasks:
+  - id: T2-AUDIT
+    module: primus-audit
+    tier: 2
+    path: primus-platform/primus-services/primus-audit
+    depends_on: [tier1-baseline]
+    entry_criteria:
+      - AuditEvent schema approved
+      - Append-only persistence design approved
+    exit_criteria:
+      - Ingest/query/report APIs implemented
+      - End-to-end governance capture validated
+      - Retention/archive job validated
+
+  - id: T2-APPROVAL
+    module: primus-approval
+    tier: 2
+    path: primus-platform/primus-services/primus-approval
+    depends_on: [T2-AUDIT]
+    entry_criteria:
+      - Approval state machine agreed
+      - Sensitive data classification tags available
+    exit_criteria:
+      - Approval APIs and policy evaluator working
+      - SLA/escalation behavior verified
+      - Sensitive flows blocked without valid approval
+
+  - id: T2-SERVER-GOV
+    module: primus-server-governance-integration
+    tier: 2
+    path: primus-platform/primus-services/primus
+    depends_on: [T2-AUDIT, T2-APPROVAL]
+    entry_criteria:
+      - Governance APIs available in test environment
+    exit_criteria:
+      - Approval gate in orchestration path
+      - Correlated governance events emitted for decision points
+
+  - id: T3-STORAGE-CORE
+    module: primus-storage-core
+    tier: 3
+    path: primus-platform/primus-services/primus-storage-core
+    depends_on: [tier1-baseline]
+    entry_criteria:
+      - SPI contract drafted
+    exit_criteria:
+      - SPI consumed by export/retrieval flows
+      - Direct NAS-only coupling removed
+
+  - id: T3-STORAGE-S3
+    module: primus-storage-s3
+    tier: 3
+    path: primus-platform/primus-services/primus-storage-s3
+    depends_on: [T3-STORAGE-CORE]
+    entry_criteria:
+      - Storage URI/policy contract finalized
+    exit_criteria:
+      - Multipart upload and encryption support validated
+      - Integration and fallback tests pass
+
+  - id: T3-STORAGE-DB
+    module: primus-storage-database
+    tier: 3
+    path: primus-platform/primus-services/primus-storage-database
+    depends_on: [T3-STORAGE-CORE]
+    entry_criteria:
+      - Database schema and indexing strategy approved
+    exit_criteria:
+      - Metadata/export persistence operational
+      - Query throughput targets met
+
+  - id: T3-NAS-REFACTOR
+    module: primus-nas-spi-refactor
+    tier: 3
+    path: primus-platform/primus-services/primus-nas
+    depends_on: [T3-STORAGE-CORE]
+    entry_criteria:
+      - SPI compatibility test contract available
+    exit_criteria:
+      - NAS adapter passes SPI contract and resilience tests
+
+  - id: T4-NOTIFICATION
+    module: primus-notification
+    tier: 4
+    path: primus-platform/primus-services/primus-notification
+    depends_on: [T2-SERVER-GOV]
+    entry_criteria:
+      - Notification event types and templates approved
+    exit_criteria:
+      - Email/webhook delivery and retry/DLQ verified
+      - Delivery tracking APIs exposed
+
+  - id: T5-API-GATEWAY
+    module: primus-api-gateway
+    tier: 5
+    path: primus-platform/primus-services/primus-api-gateway
+    depends_on: [T2-SERVER-GOV]
+    entry_criteria:
+      - Gateway policy model finalized
+    exit_criteria:
+      - External traffic routed through gateway
+      - Rate and payload constraints enforced and tested
+      - Gateway logs and alerts available
+
+  - id: T6-MONITORING
+    module: primus-monitoring
+    tier: 6
+    path: primus-platform/primus-services/primus-monitoring
+    depends_on: [T5-API-GATEWAY]
+    entry_criteria:
+      - Metric/log/trace taxonomy approved
+    exit_criteria:
+      - Dashboards and alerts operational
+      - Core services emit standard telemetry with correlation IDs
+
+  - id: T7-CONFIG
+    module: primus-config
+    tier: 7
+    path: primus-platform/primus-services/primus-config
+    depends_on: [T6-MONITORING]
+    entry_criteria:
+      - Config hierarchy, rollback, and access model defined
+    exit_criteria:
+      - Services consume centralized config and feature flags
+      - Config changes are auditable and access-controlled
+
+  - id: T7-PROVISIONING
+    module: primus-provisioning
+    tier: 7
+    path: primus-platform/primus-services/primus-provisioning
+    depends_on: [T7-CONFIG]
+    entry_criteria:
+      - IaC and deployment artifact format selected
+    exit_criteria:
+      - Repeatable provisioning templates shipped
+      - Rollback procedures validated
+
+  - id: T8-CLI
+    module: primus-cli
+    tier: 8
+    path: primus-platform/primus-libs/primus-cli
+    depends_on: [T5-API-GATEWAY]
+    entry_criteria:
+      - CLI command catalog and output formats approved
+    exit_criteria:
+      - Core operator commands implemented
+      - JSON output and stable exit codes validated
+
+  - id: T8-SCHEDULER
+    module: primus-scheduler
+    tier: 8
+    path: primus-platform/primus-services/primus-scheduler
+    depends_on: [T4-NOTIFICATION]
+    entry_criteria:
+      - Job state model and retry policies approved
+    exit_criteria:
+      - Recurring jobs execute reliably with observability
+      - Failure recovery runbook validated
+
+  - id: T8-LINEAGE
+    module: primus-data-lineage
+    tier: 8
+    path: primus-platform/primus-services/primus-data-lineage
+    depends_on: [T2-SERVER-GOV, T3-STORAGE-CORE]
+    entry_criteria:
+      - Lineage graph and event schema finalized
+    exit_criteria:
+      - Source-to-export-to-retrieval lineage queryable
+      - Impact analysis APIs tested
+
+  - id: T9-SDK-PYTHON
+    module: primus-sdk-python
+    tier: 9
+    path: primus-platform/primus-libs/primus-sdk-python
+    depends_on: [T5-API-GATEWAY]
+    entry_criteria:
+      - SDK versioning and compatibility policy approved
+    exit_criteria:
+      - Package published with examples and integration tests
+
+  - id: T9-SDK-NODE
+    module: primus-sdk-node
+    tier: 9
+    path: primus-platform/primus-libs/primus-sdk-node
+    depends_on: [T9-SDK-PYTHON]
+    entry_criteria:
+      - Core parity scope agreed
+    exit_criteria:
+      - Core workflow parity achieved and tested
+
+  - id: T9-SDK-GO
+    module: primus-sdk-go
+    tier: 9
+    path: primus-platform/primus-libs/primus-sdk-go
+    depends_on: [T9-SDK-PYTHON]
+    entry_criteria:
+      - Go SDK MVP scope approved
+    exit_criteria:
+      - Core workflows supported with contract tests
+
+  - id: T9-INTEGRATIONS
+    module: primus-integrations
+    tier: 9
+    path: primus-platform/primus-services/primus-integrations
+    depends_on: [T5-API-GATEWAY]
+    entry_criteria:
+      - Target integrations prioritized
+    exit_criteria:
+      - Reference adapters validated in representative scenarios
+
